@@ -8,16 +8,15 @@ const UsersSchema = new Schema(
     password: { type: String }
   },
   {
-    versionKey: false,
     collection: "UsersCollection"
   }
 );
 
-UsersSchema.pre("save", function(next) {
-  if (this.isModified("password") || this.isNew()) {
-    this.password = bcrtypt.hashSync(this.password, 12);
-  }
-  next();
-});
+// UsersSchema.pre("save", function(next) {
+//   if (this.isModified("password") || this.isNew()) {
+//     this.password = bcrtypt.hashSync(this.password, 12);
+//   }
+//   next();
+// });
 
 module.exports = model("UsersModel", UsersSchema);

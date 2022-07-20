@@ -5,20 +5,8 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
-function checkAuth(req, res, next) {
-    passport.authenticate(
-        'jwt',
-        { session: false },
-        (err, decryptToken, jwtError) => {
-            if (jwtError !== void 0 || err !== void 0) {
-                return res.render('index.html', { error: err || jwtError });
-            }
-            req.user = decryptToken;
-            next();
-        },
-    )(req, res, next);
-}
 
 function createToken(body) {
     return jwt.sign(body, config.jwt.secretOrKey, {
@@ -27,13 +15,9 @@ function createToken(body) {
 }
 
 module.exports = app => {
-    app.use(express.static('./client/views'));
+    
 
-    //   app.get('/', checkAuth, (req, res) => {
-    //     res.render('index.html', { username: req.user.username });
-    //   });
-
-    app.post('/login', async (req, res) => {
+    app.post('/login', async function(req, res) {
         try {
             const user = await UsersModel.findOne({
                 username: { $regex: _.escapeRegExp(req.body.username), $options: 'i' },
@@ -46,7 +30,9 @@ module.exports = app => {
                     httpOnly: true,
                 });
 
-                res.status(200).send({ message: 'User login success.' });
+                res
+                .status(200)
+                .redirect('/home');
             } else {
                 res
                     .status(400)
@@ -54,7 +40,9 @@ module.exports = app => {
             }
         } catch (err) {
             console.error('E, login,', err);
-            res.status(500).send({ message: 'some error' });
+            res
+            .status(500)
+            .send({ message: 'some error' });
         }
     });
 
@@ -86,4 +74,15 @@ module.exports = app => {
             res.status(500).send({ message: 'some error' });
         }
     });
+
+    app.get('/login', async function(req, res){
+
+      await  res.sendFile(path.resolve('client/views/login.html'));
+     });
+
+     app.get('/home', async function(req, res) {
+
+       await res.sendFile(path.resolve('client/views/home.html'));
+
+      });
 };
