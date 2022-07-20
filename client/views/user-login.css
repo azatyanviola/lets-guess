@@ -9,21 +9,16 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: -webkit-linear-gradient(right, #00dbde, #fc00ff,#00dbde, #fc00ff);
+    background: url(https://cdna.artstation.com/p/marketplace/presentation_assets/001/497/568/large/file.jpg?1643094201);
     background-size: cover;
     background-position: center;
     text-align: center;
     font-family: sans-serif;
 }
-#fo1{
-    width: 500px;
-   margin-left:250px;
-   margin-top: -250px;
-}
 #main{
-
-    width: 750px;
-    height: 400px;
+ 
+    width: 590px;
+    height: 517px;
     top: 282px;
     left:665px;
     background: rgb(200, 201, 240);
@@ -42,13 +37,24 @@ h1{
     margin-top: 10px;
 
 }
-#image{
-    width: 200px;
-    margin-left: -420px;
-    margin-top: 20px;
-
+hr{
+    height:1px;
+    top:400px;
+    width:590px;
+    left: 665px;
+    color:#0a0ee2;
+    background-color:#0a0ee2;
+    border: 1px;
+    
 }
-
+h2{
+    font-family: Calibri;
+    font-style: Bold;
+    font-size: 30px;
+    color: #78ace0;
+    text-align: center;
+    vertical-align: Top;
+}
 .field1, form #btn{
     margin: 25px 0;
     position: relative;
@@ -126,8 +132,16 @@ input:valid ~ label{
  margin-top: 20px;
  margin-left: -330px;
 }
+#forgot{
+    font-size: 18px;
+    font-style: bold;
+    margin-top: -20px;
+    margin-left: 350px; 
+    color: #0d4d79;
+    font-family: Calibri;
+}
 form #btn{
-    margin-top: 40px;
+    margin-top: 60px;
     width: 80%;
     left: 55px;
     overflow: hidden;
@@ -166,4 +180,18 @@ form #btn{
     font-size: 20px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+}
+#message{
+    color: red;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: right;
+}
+#message1{
+    color: red;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+
 }

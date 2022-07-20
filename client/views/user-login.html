@@ -6,30 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login panel</title>
-    <link rel="stylesheet" type="text/css"  href="admin-login.css">
+    <link rel="stylesheet" href="./user-login.css">
 </head>
 <body>
     <div id="main">
         <h1>Who wants to be a millionaire</h1>
         <hr>
         <h2>Login to continue</h2>
-         <form method="post" action="/login">
+         <form action ="/login" method="POST">
             <div class="field1">
                 <input type="text" id="username" required name="username">
-                <label> Username</label>
+                <label id="lab1"> Your email address </label>
             </div>
             <div class="field2">
                 <input type="password" id="password" required name="password">
-                <label> Password</label>
+                <label id="lab2"> Your password</label>
             </div>
             <p id="rem"> <input type="radio" id="remember"  value="Remember me">
-                <label for="remember">Remember me</label></p>
+                <label for="remem" id="rem1">Remember me</label></p>
                <p id="forgot">
-                <label for="remember"><u>Forgot password?</u></label></p>
+                <label for="remem"><u>Forgot password?</u></label></p>
                </p>
             <div id = "btn">
             <div id="inner"></div>
-                <button type="submit">LOGIN</button>
+            <button type="submit">LOGIN</button>
             </div>
         </form>
     </div>

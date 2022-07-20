@@ -14,8 +14,6 @@ const mongoose = require('mongoose');
     await mongoose.connect('mongodb://localhost:27017/lets-guess');
 })();
 
-app.use(express.static('.'));
-
 const cookieParser = require('cookie-parser');
 const config = require('./server/config');
 
@@ -31,7 +29,7 @@ passport.use(new Strategy(jwt, ((jwt_payload, done) => {
     done();
 })));
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
