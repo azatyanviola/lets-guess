@@ -2,11 +2,8 @@ const UsersModel = require('../models/admin-user-model');
 const _ = require('lodash');
 const config = require('./config');
 const bcrypt = require('bcrypt');
-const express = require('express');
-const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-
 
 function createToken(body) {
     return jwt.sign(body, config.jwt.secretOrKey, {
@@ -15,15 +12,15 @@ function createToken(body) {
 }
 
 module.exports = app => {
-    
-
-    app.post('/login', async function(req, res) {
+    app.post('/login', async (req, res) => {
         try {
+            console.log('req.body', req.body);
             const user = await UsersModel.findOne({
-                username: { $regex: _.escapeRegExp(req.body.username), $options: 'i' },
+                username: req.body.username,
             })
                 .lean()
                 .exec();
+
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 const token = createToken({ id: user._id, username: user.username });
                 res.cookie('token', token, {
@@ -31,9 +28,10 @@ module.exports = app => {
                 });
 
                 res
-                .status(200)
-                .redirect('/home');
+                    .status(200)
+                    .redirect('/home');
             } else {
+                console.log('else');
                 res
                     .status(400)
                     .send({ message: 'User not exist or password not correct' });
@@ -41,8 +39,8 @@ module.exports = app => {
         } catch (err) {
             console.error('E, login,', err);
             res
-            .status(500)
-            .send({ message: 'some error' });
+                .status(500)
+                .send({ message: 'some error' });
         }
     });
 
@@ -75,14 +73,11 @@ module.exports = app => {
         }
     });
 
-    app.get('/login', async function(req, res){
+    app.get('/login', async (req, res) => {
+        await  res.sendFile(path.resolve('client/views/login.html'));
+    });
 
-      await  res.sendFile(path.resolve('client/views/login.html'));
-     });
-
-     app.get('/home', async function(req, res) {
-
-       await res.sendFile(path.resolve('client/views/home.html'));
-
-      });
+    app.get('/home', async (req, res) => {
+        await res.sendFile(path.resolve('client/views/home.html'));
+    });
 };

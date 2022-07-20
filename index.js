@@ -31,7 +31,7 @@ passport.use(new Strategy(jwt, ((jwt_payload, done) => {
     done();
 })));
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded());
 
 app.use(express.json());
 
