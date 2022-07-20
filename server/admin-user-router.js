@@ -45,12 +45,10 @@ module.exports = app => {
                 res.cookie('token', token, {
                     httpOnly: true,
                 });
-
-                res.status(200).send({ message: 'User login success.' });
+                res.status(200).send({ message: 'User login success.' })
+                  .redirect('client/views/admin-login.html');
             } else {
-                res
-                    .status(400)
-                    .send({ message: 'User not exist or password not correct' });
+                res.status(400).send({ message: 'User not exist or password not correct' });
             }
         } catch (err) {
             console.error('E, login,', err);

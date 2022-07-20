@@ -2,7 +2,7 @@
 global.Promise = require('bluebird');
 const env = require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const express = require('express');
 
