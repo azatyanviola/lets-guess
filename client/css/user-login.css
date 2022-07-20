@@ -1,4 +1,3 @@
-
 *{
     margin:0;
     padding:0;
@@ -10,15 +9,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url(https://cdna.artstation.com/p/marketplace/presentation_assets/001/497/568/large/file.jpg?1643094201);
     background-size: cover;
     background-position: center;
     text-align: center;
     font-family: sans-serif;
-    background-color: #667380;
-    width:1920px;
-    height:1080px;
-    left:-2020px;
-    top:0px;
 }
 #main{
  
@@ -26,9 +21,8 @@ body{
     height: 517px;
     top: 282px;
     left:665px;
-    background: white;
+    background: rgb(200, 201, 240);
     offset: 0px, 4px;
-    color:rgba(0, 0, 0, 0.15);
 
 }
 h1{
@@ -39,16 +33,17 @@ h1{
     line-height: 100%;
     text-align: center;
     vertical-align: top;
-    color:#4F5F6F;
+    color:#5608d4;
+    margin-top: 10px;
 
 }
 hr{
     height:1px;
-    top:364px;
+    top:400px;
     width:590px;
     left: 665px;
-    color:#85CE36;
-    background-color:#85CE36;
+    color:#0a0ee2;
+    background-color:#0a0ee2;
     border: 1px;
     
 }
@@ -56,7 +51,7 @@ h2{
     font-family: Calibri;
     font-style: Bold;
     font-size: 30px;
-    color: #4F5F6F;
+    color: #78ace0;
     text-align: center;
     vertical-align: Top;
 }
@@ -75,20 +70,28 @@ h2{
 .field1 input{
     height: 100%;
     width: 80%;
-    border: 1px solid silver;
+    border: 1px solid #0874b8;
     padding-left: 15px;
     outline: none;
     font-size: 19px;
     transition: .4s;
+    background-color: rgb(200, 201, 240);
+}
+#lab1{
+    background-color: rgb(200, 201, 240);
+}
+#lab2{
+    background-color: rgb(200, 201, 240);
 }
 .field2 input{
     height: 100%;
     width: 80%;
-    border: 1px solid silver;
+    border: 1px solid #0874b8;
     padding-left: 15px;
     outline: none;
     font-size: 19px;
     transition: .4s;
+    background-color: rgb(200, 201, 240);
 }
 input:focus{
     border: 2px solid #0874b8;
@@ -112,6 +115,9 @@ input:focus{
     color: gray;
     font-size: 18px;
     transition: .4s;
+}
+#rem1{
+    background-color: rgb(200, 201, 240);
 }
 input:focus ~ label,
 input:valid ~ label{
