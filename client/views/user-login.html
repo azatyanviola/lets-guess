@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login panel</title>
-    <link rel="stylesheet" href="../css/user-login.css">
+    <link rel="stylesheet" href="./user-login.css">
 </head>
 <body>
     <div id="main">
@@ -15,11 +15,11 @@
         <h2>Login to continue</h2>
          <form action ="/login" method="POST">
             <div class="field1">
-                <input type="text" id="username" required>
+                <input type="text" id="username" required name="username">
                 <label id="lab1"> Your email address </label>
             </div>
             <div class="field2">
-                <input type="password" id="password" required>
+                <input type="password" id="password" required name="password">
                 <label id="lab2"> Your password</label>
             </div>
             <p id="rem"> <input type="radio" id="remember"  value="Remember me">
@@ -29,8 +29,8 @@
                </p>
             <div id = "btn">
             <div id="inner"></div>
-            <button>LOGIN</button>
-            </div> 
+            <button type="submit">LOGIN</button>
+            </div>
         </form>
     </div>
 </body>

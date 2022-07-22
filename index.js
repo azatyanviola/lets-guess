@@ -1,11 +1,9 @@
 
-global.Promise = require('bluebird');
 const env = require('dotenv').config();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 const express = require('express');
-
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -31,16 +29,14 @@ passport.use(new Strategy(jwt, ((jwt_payload, done) => {
     done();
 })));
 
-
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
 app.use(cookieParser());
+app.use(express.static('client/views'));
 
 require('./server/admin-user-router')(app);
-app.use('/client', express.static('./client'));
-
 
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
