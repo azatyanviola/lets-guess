@@ -44,7 +44,7 @@ class AdminCtrl {
         }
     }
 
-     static async adminCreate(req, res) {
+    static async adminCreate(req, res) {
         try {
             let user = await UsersModel.findOne({
                 username: { $regex: _.escapeRegExp(req.body.username), $options: 'i' },
@@ -80,8 +80,8 @@ class AdminCtrl {
     static async getHome(req, res) {
         await res.sendFile(path.resolve('client/views/home.html'));
     }
-};
+}
 
 module.exports = {
-    AdminCtrl ,
+    AdminCtrl,
 };
