@@ -11,8 +11,8 @@ function createToken(body) {
     });
 }
 
-module.exports = app => {
-    app.post('/login', async (req, res) => {
+class AdminCtrl {
+    static async  adminLogin(req, res) {
         try {
             console.log('req.body', req.body);
             const user = await UsersModel.findOne({
@@ -42,9 +42,9 @@ module.exports = app => {
                 .status(500)
                 .send({ message: 'some error' });
         }
-    });
+    }
 
-    app.post('/register', async (req, res) => {
+    static async adminCreate(req, res) {
         try {
             let user = await UsersModel.findOne({
                 username: { $regex: _.escapeRegExp(req.body.username), $options: 'i' },
@@ -71,13 +71,17 @@ module.exports = app => {
             console.error('E, register,', err);
             res.status(500).send({ message: 'some error' });
         }
-    });
+    }
 
-    app.get('/login', async (req, res) => {
-        await  res.sendFile(path.resolve('client/views/login.html'));
-    });
+    static async getLogin(req, res) {
+        await  res.sendFile(path.resolve('client/views/admin-login.html'));
+    }
 
-    app.get('/home', async (req, res) => {
+    static async getHome(req, res) {
         await res.sendFile(path.resolve('client/views/home.html'));
-    });
+    }
+}
+
+module.exports = {
+    AdminCtrl,
 };
