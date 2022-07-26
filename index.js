@@ -15,14 +15,17 @@ const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
 
+require('./controllers/config');
+
 const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 
 const { jwt } = require('./controllers/config');
 
-passport.use(new Strategy(jwt, ((jwtPayload, done) => {
-    if (jwtPayload !== void 0) {
-        return done(false, jwtPayload);
+
+passport.use(new Strategy(jwt, ((jwt_payload, done) => {
+    if (jwt_payload !== void 0) {
+        return done(false, jwt_payload);
     }
     done();
 })));
@@ -31,6 +34,10 @@ app.use(express.urlencoded({ extended: false }));
 
 const { router } = require('./routers/admin-router');
 app.use('/', router);
+
+
+const { userRt } = require('./routers/user-router');
+app.use('/', userRt);
 
 app.use(express.json());
 
