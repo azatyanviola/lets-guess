@@ -22,24 +22,22 @@ const { Strategy } = require('passport-jwt');
 
 const { jwt } = require('./controllers/config');
 
-
-passport.use(new Strategy(jwt, ((jwt_payload, done) => {
-    if (jwt_payload !== void 0) {
-        return done(false, jwt_payload);
+passport.use(new Strategy(jwt, ((jwtPayload, done) => {
+    if (jwtPayload !== void 0) {
+        return done(false, jwtPayload);
     }
     done();
 })));
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.json());
+
 const { router } = require('./routers/admin-router');
 app.use('/', router);
 
-
 const { userRt } = require('./routers/user-router');
 app.use('/', userRt);
-
-app.use(express.json());
 
 app.use(cookieParser());
 app.use(express.static('client/views'));

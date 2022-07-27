@@ -20,7 +20,6 @@ class UserCtrl {
             })
                 .lean()
                 .exec();
-                console.log(req.body.password);
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 const token = createToken({ id: user._id, username: user.username });
                 res.cookie('token', token, {
@@ -59,13 +58,13 @@ class UserCtrl {
                 username: req.body.username,
                 password: req.body.password,
             });
-
+             console.log(req.body);
             const token = createToken({ id: user._id, username: user.username });
 
             res.cookie('token', token, {
                 httpOnly: true,
             });
-
+            console.log(token);
             res.status(200).send({ message: 'User created.' });
         } catch (err) {
             console.error('E, register,', err);

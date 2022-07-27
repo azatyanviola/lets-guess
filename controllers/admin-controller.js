@@ -20,7 +20,7 @@ class AdminCtrl {
             })
                 .lean()
                 .exec();
-                console.log(req.body);
+            console.log(req.body);
 
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 const token = createToken({ id: user._id, username: user.username });
@@ -52,7 +52,7 @@ class AdminCtrl {
             })
                 .lean()
                 .exec();
-                console.log(req.body);
+            console.log(req.body);
             if (user) {
                 return res.status(400).send({ message: 'User already exist' });
             }
