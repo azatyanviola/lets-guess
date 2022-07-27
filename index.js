@@ -6,21 +6,16 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+require('./controllers/config');
+const passport = require('passport');
+const { Strategy } = require('passport-jwt');
+const { jwt } = require('./controllers/config');
 
 (async () => {
     await mongoose.connect('mongodb://localhost:27017/lets-guess');
 })();
-
-const cookieParser = require('cookie-parser');
-
-require('./controllers/config');
-
-const passport = require('passport');
-const { Strategy } = require('passport-jwt');
-
-const { jwt } = require('./controllers/config');
 
 passport.use(new Strategy(jwt, ((jwtPayload, done) => {
     if (jwtPayload !== void 0) {
