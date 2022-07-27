@@ -14,14 +14,11 @@ function createToken(body) {
 class AdminCtrl {
     static async  adminLogin(req, res) {
         try {
-            console.log('req.body', req.body);
             const user = await UsersModel.findOne({
                 username: req.body.username,
             })
                 .lean()
                 .exec();
-            console.log(req.body);
-
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 const token = createToken({ id: user._id, username: user.username });
                 res.cookie('token', token, {
@@ -32,7 +29,6 @@ class AdminCtrl {
                     .status(200)
                     .redirect('/home');
             } else {
-                console.log('else');
                 res
                     .status(400)
                     .send({ message: 'User not exist or password not correct' });
@@ -52,7 +48,6 @@ class AdminCtrl {
             })
                 .lean()
                 .exec();
-            console.log(req.body);
             if (user) {
                 return res.status(400).send({ message: 'User already exist' });
             }

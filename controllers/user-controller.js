@@ -14,7 +14,6 @@ function createToken(body) {
 class UserCtrl {
     static async  userLogin(req, res) {
         try {
-            console.log('req.body', req.body);
             const user = await UserModel.findOne({
                 username: req.body.username,
             })
@@ -30,7 +29,6 @@ class UserCtrl {
                     .status(200)
                     .redirect('/home');
             } else {
-                console.log('else');
                 res
                     .status(400)
                     .send({ message: 'User not exist or password not correct' });
@@ -58,14 +56,12 @@ class UserCtrl {
                 username: req.body.username,
                 password: req.body.password,
             });
-             console.log(req.body);
             const token = createToken({ id: user._id, username: user.username });
 
             res.cookie('token', token, {
                 httpOnly: true,
             });
-            console.log(token);
-            res.status(200).send({ message: 'User created.' });
+            res.status(200).redirect('/users');
         } catch (err) {
             console.error('E, register,', err);
             res.status(500).send({ message: 'some error' });
@@ -78,6 +74,10 @@ class UserCtrl {
 
     static async getHome(req, res) {
         await res.sendFile(path.resolve('client/views/home.html'));
+    }
+
+    static async getRegister(req, res) {
+        await  res.sendFile(path.resolve('client/views/registration.html'));
     }
 }
 

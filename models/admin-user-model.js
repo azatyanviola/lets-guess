@@ -8,7 +8,7 @@ const UsersSchema = new Schema(
         password: { type: String },
     },
     {
-        collection: 'UsersCollection',
+        collection: 'Admin',
     },
 );
 
