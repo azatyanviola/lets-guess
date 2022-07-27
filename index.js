@@ -15,6 +15,8 @@ const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
 
+require('./controllers/config');
+
 const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 
@@ -29,10 +31,13 @@ passport.use(new Strategy(jwt, ((jwtPayload, done) => {
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.json());
+
 const { router } = require('./routers/admin-router');
 app.use('/', router);
 
-app.use(express.json());
+const { userRt } = require('./routers/user-router');
+app.use('/', userRt);
 
 app.use(cookieParser());
 app.use(express.static('client/views'));
