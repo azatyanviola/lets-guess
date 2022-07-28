@@ -1,9 +1,12 @@
+
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #3e6943;
+  
+  background: -webkit-linear-gradient(right, #00dbde, #fc00ff,#00dbde, #fc00ff);
   font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
@@ -13,7 +16,7 @@ body {
 }
 
 .container {
-  background-color: #fff;
+  background-color: rgb(200, 201, 240);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -23,12 +26,14 @@ body {
 
 .header {
   border-bottom: 1px solid #f0f0f0;
-  background-color: #f7f7f7;
+  background-color: rgb(200, 201, 240);
   padding: 20px 40px;
+  color:#5608d4;
 }
 
 .header h2 {
   margin: 0;
+  color:#5608d4;
 }
 
 .form {
@@ -47,7 +52,8 @@ body {
 }
 
 .form-control input {
-  border: 2px solid #f0f0f0;
+  border: 1px solid #0874b8;
+  background-color: rgb(200, 201, 240);
   border-radius: 4px;
   display: block;
   font-family: inherit;
@@ -58,7 +64,7 @@ body {
 
 .form-control input:focus {
   outline: 0;
-  border-color: #777;
+  border: 1px solid #0874b8;
 }
 
 .form-control.success input {
@@ -76,12 +82,12 @@ body {
   right: 10px;
 }
 
-.form-control.success {
+.form-control.success i.fa-check-circle {
   color: #2ecc71;
   visibility: visible;
 }
 
-.form-control.error {
+.form-control.error i.fa-exclamation-circle {
   color: #e74c3c;
   visibility: visible;
 }
@@ -99,8 +105,8 @@ body {
 }
 
 .form button {
-  background-color: #3b893a;
-  border: 2px solid #3b893a;
+ 
+  background: -webkit-linear-gradient(right, #00dbde, #fc00ff,#00dbde, #fc00ff);
   border-radius: 4px;
   color: #fff;
   display: block;
@@ -109,4 +115,5 @@ body {
   padding: 10px;
   margin-top: 20px;
   width: 100%;
+ 
 }
