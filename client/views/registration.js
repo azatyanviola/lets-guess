@@ -27,7 +27,7 @@ function checkInputs() {
         setErrorFor(email, 'Not a valid email');
     } else {
         setSuccessFor(email);
-    }
+    } 
 
     const numberCheck = /\d/g;
     const lowerCaseCheck = /^(?=.*[a-z]).*$/;
