@@ -2,21 +2,22 @@
 const { Schema, model } = require('mongoose');
 const bcrtypt = require('bcrypt');
 
-const UsersSchema = new Schema(
+const UserSchema = new Schema(
     {
         username: { type: String },
         password: { type: String },
+        email: { type: String },
     },
     {
-        collection: 'Admin',
+        collection: 'Users',
     },
 );
 
-UsersSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
     if (this.isModified('password') || this.isNew()) {
         this.password = bcrtypt.hashSync(this.password, 12);
     }
     next();
 });
 
-module.exports = model('UsersModel', UsersSchema);
+module.exports = model('UserModel', UserSchema);

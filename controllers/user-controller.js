@@ -1,4 +1,4 @@
-const UsersModel = require('../models/admin-user-model');
+const UserModel = require('../models/user-model');
 const _ = require('lodash');
 const config = require('./config');
 const bcrypt = require('bcrypt');
@@ -11,10 +11,10 @@ function createToken(body) {
     });
 }
 
-class AdminCtrl {
-    static async  adminLogin(req, res) {
+class UserCtrl {
+    static async  userLogin(req, res) {
         try {
-            const user = await UsersModel.findOne({
+            const user = await UserModel.findOne({
                 username: req.body.username,
             })
                 .lean()
@@ -41,9 +41,9 @@ class AdminCtrl {
         }
     }
 
-    static async adminCreate(req, res) {
+    static async userCreate(req, res) {
         try {
-            let user = await UsersModel.findOne({
+            let user = await UserModel.findOne({
                 username: { $regex: _.escapeRegExp(req.body.username), $options: 'i' },
             })
                 .lean()
@@ -52,18 +52,16 @@ class AdminCtrl {
                 return res.status(400).send({ message: 'User already exist' });
             }
 
-            user = await UsersModel.create({
+            user = await UserModel.create({
                 username: req.body.username,
                 password: req.body.password,
             });
-
             const token = createToken({ id: user._id, username: user.username });
 
             res.cookie('token', token, {
                 httpOnly: true,
             });
-
-            res.status(200).send({ message: 'User created.' });
+            res.status(200).redirect('/users');
         } catch (err) {
             console.error('E, register,', err);
             res.status(500).send({ message: 'some error' });
@@ -71,14 +69,18 @@ class AdminCtrl {
     }
 
     static async getLogin(req, res) {
-        await  res.sendFile(path.resolve('client/views/admin-login.html'));
+        await  res.sendFile(path.resolve('client/views/user-login.html'));
     }
 
     static async getHome(req, res) {
         await res.sendFile(path.resolve('client/views/home.html'));
     }
+
+    static async getRegister(req, res) {
+        await  res.sendFile(path.resolve('client/views/registration.html'));
+    }
 }
 
 module.exports = {
-    AdminCtrl,
+    UserCtrl,
 };
