@@ -1,0 +1,94 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: -webkit-linear-gradient(right, #00b2de, #ae00ff,#00dbde, #ae00ff);    background-size: cover;
+ 
+    background-position: center;
+    text-align: center;
+    font-family: sans-serif;
+}
+#one{
+
+    width: 900px;
+    height: 800px;
+    top: 282px;
+    left:665px;
+    background: rgb(99, 101, 238);
+
+    offset: 0px, 4px;
+}
+#img1{
+    width: 700px;
+    margin-top: 40px;
+}
+#img2{
+    width: 500px;
+    margin-top: 20px;
+    margin-left: center;
+}
+
+.geeks {
+    text-align: center;
+    margin: 30px auto 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.geeks span {
+    font-size: 50px;
+    font-weight: 700;
+    color: rgb(4, 92, 151);
+    position: relative;
+    text-shadow: 5px 0 0 rgba(0, 0, 0, .2);
+}
+
+.geeks span::before {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    color: rgb(131, 1, 218);
+    transition: .5s cubic-bezier(
+        0.175, 0.885, 0.32, 1.275);
+    transform: rotateY(25deg);
+}
+
+.geeks span:hover::before {
+    transform: perspective(1000px) rotate(-67deg);
+}
+
+#btn1 {
+    width: 20%;
+    height: 5%;
+    border: none;
+    background: blueviolet;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    margin-left: -20px;
+}
+#btn2 {
+    width: 20%;
+    height: 5%;
+    border: none;
+    background: blueviolet;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    margin-left: 260px;
+}
