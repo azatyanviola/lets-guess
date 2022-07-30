@@ -62,23 +62,23 @@ class UserCtrl {
                 username: req.body.username,
                 password: req.body.password,
             });
-            // if (req.body.password === '') {
-            //     res.send({ message: 'Password cannot be blank' });
-            // } if (req.body.password < 8) {
-            //     res.send({ message: 'Password length must be at least 8 characters' });
-            // } if (req.body.password > 16) {
-            //     res.send({ message: 'Password length must not exceed 16 characters' });
-            // } if (!numberCheck.test(req.body.password)) {
-            //     res.send({ message: 'Password must have at least one digit' });
-            // } if (!lowerCaseCheck.test(req.body.password)) {
-            //     res.send({ message: 'Password must have at least one lower case' });
-            // } if (!upperCaseCheck.test(req.body.password)) {
-            //     res.send({ message: 'Password must have at least one upper case' });
-            // } if (!specialSymbolCheck.test(req.body.password)) {
-            //     res.send({ message: 'Password must have at least one symbol' });
-            // } if (!languageCheck.test(req.body.password)) {
-            //     res.send({ message: 'Password must be Latin, Armenian or Russian' });
-            // }
+            if (req.body.password === '') {
+                return res.send({ message: 'Password cannot be blank' });
+            } if (req.body.password < 8) {
+                return res.send({ message: 'Password length must be at least 8 characters' });
+            } if (req.body.password > 16) {
+                return res.send({ message: 'Password length must not exceed 16 characters' });
+            } if (!numberCheck.test(req.body.password)) {
+                return res.send({ message: 'Password must have at least one digit' });
+            } if (!lowerCaseCheck.test(req.body.password)) {
+                return res.send({ message: 'Password must have at least one lower case' });
+            } if (!upperCaseCheck.test(req.body.password)) {
+                return res.send({ message: 'Password must have at least one upper case' });
+            } if (!specialSymbolCheck.test(req.body.password)) {
+                return res.send({ message: 'Password must have at least one symbol' });
+            } if (!languageCheck.test(req.body.password)) {
+                return res.send({ message: 'Password must be Latin, Armenian or Russian' });
+            }
             const token = createToken({ id: user._id, username: user.username });
             res.cookie('token', token, {
                 httpOnly: true,
