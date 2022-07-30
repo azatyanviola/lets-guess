@@ -1,15 +1,11 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 
-const form = document.getElementById('form');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
-form.addEventListener('submit', submitEvent => {
-    submitEvent.preventDefault();
-    checkInputs();
-});
+
 function checkInputs() {
     const usernameValue = username.value.trim();
     const emailValue = email.value.trim();
@@ -27,7 +23,7 @@ function checkInputs() {
         setErrorFor(email, 'Not a valid email');
     } else {
         setSuccessFor(email);
-    } 
+    }
 
     const numberCheck = /\d/g;
     const lowerCaseCheck = /^(?=.*[a-z]).*$/;
