@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form</title>
+    <meta charset='utf-8'>
+
+    <link href="/admin-view/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!-- <button onclick="CreateQuestion()">ADD A QUESTION</button> -->
+
+    <form name="questionForm">
+        <div class=" container-fluid">
+            <div class="bg-info text-white text-center mb-4">
+                <h3>Questions</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col">
+
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Question</label>
+                        <div class="col-8">
+                            <input class="form-control" name="question">
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Answer N1</label>
+                        <div class="col-8">
+                            <div class=" input-group">
+                                <input class="form-control" name="answer1">
+                                <div class="input-group-text">
+                                    <input type="checkbox" name="istrue1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Answer N2</label>
+                        <div class="col-8">
+                            <div class=" input-group">
+                                <input class="form-control" name="answer2">
+                                <div class="input-group-text">
+                                    <input type="checkbox" name="istrue2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Answer N3</label>
+                        <div class="col-8">
+                            <div class=" input-group">
+                                <input class="form-control" name="answer3">
+                                <div class="input-group-text">
+                                    <input type="checkbox" name="istrue3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Answer N4</label>
+                        <div class="col-8">
+                            <div class=" input-group">
+                                <input class="form-control" name="answer4">
+                                <div class="input-group-text">
+                                    <input type="checkbox" name="istrue4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row g-2 mb-3">
+                        <label class="col-4 col-form-label text-end fw-bold">Created Date</label>
+                        <div class="col-4">
+                            <input class="form-control" name="created">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary me-5">Save</button>
+                        <a href="/admin-view/index.html" class="btn btn-secondary">Cancel</a>
+                    </div>
+
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </form>
+
+    <script src="scriptCreate.js"></script>
+</body>
+
+</html>
