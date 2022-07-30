@@ -12,8 +12,8 @@
       <div class="header">
         <h2>Sign Up</h2>
       </div>
-      <form id="form" class="form" method="POST" action="/user-register">
-        
+      <form id="form" class="form" method="POST"  onsubmit="return checkInputs()" action="/user-register"  >
+      
         <div class="form-control">
           <label for="username">Username</label>
           <input
