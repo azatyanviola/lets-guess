@@ -13,8 +13,8 @@ const { Strategy } = require('passport-jwt');
 const { jwt } = require('./controllers/config');
 const questionRt = require('./routers/adminRouter');
 
-(async() => {
-    await mongoose.connect('mongodb://localhost:27017/lets-guess');
+(async () => {
+    await mongoose.connect('mongodb+srv://lets-guess:nodejsgroup2022@cluster0.mdxrd.mongodb.net/lets-guess');
 })();
 
 passport.use(new Strategy(jwt, ((jwtPayload, done) => {
@@ -38,6 +38,9 @@ app.use('/', userRt);
 
 app.use(cookieParser());
 app.use(express.static('client/views'));
+app.get('/', async (req, res) => {
+    await res.sendFile(path.resolve('client/views/first-page.html'));
+});
 
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
