@@ -38,6 +38,9 @@ app.use('/', userRt);
 
 app.use(cookieParser());
 app.use(express.static('client/views'));
+app.get('/', async (req, res) => {
+    await res.sendFile(path.resolve('client/views/first-page.html'));
+});
 
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
