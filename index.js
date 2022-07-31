@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
@@ -12,9 +11,9 @@ require('./controllers/config');
 const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 const { jwt } = require('./controllers/config');
-const path = require('path');
+const questionRt = require('./routers/adminRouter');
 
-(async () => {
+(async() => {
     await mongoose.connect('mongodb://localhost:27017/lets-guess');
 })();
 
@@ -28,6 +27,8 @@ passport.use(new Strategy(jwt, ((jwtPayload, done) => {
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
+
+app.use('/admin', questionRt);
 
 const { router } = require('./routers/admin-router');
 app.use('/', router);
@@ -44,4 +45,3 @@ app.get('/', async (req, res) => {
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
-
