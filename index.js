@@ -12,6 +12,7 @@ const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 const { jwt } = require('./controllers/config');
 const questionRt = require('./routers/adminRouter');
+const path = require('path');
 
 (async () => {
     await mongoose.connect('mongodb+srv://lets-guess:nodejsgroup2022@cluster0.mdxrd.mongodb.net/lets-guess');
