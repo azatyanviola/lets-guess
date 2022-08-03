@@ -4,55 +4,55 @@ const mongoose = require('mongoose');
 class QuestionCtrl {
     // //////////////////////////////////////////////////////
     static async getQuestionsController(req, res) {
-            const questions = await Question.find();
+        const questions = await Question.find();
 
-            return res.send({
-                data: questions,
-            });
-        }
-        // //////////////////////////////////////////////////////
+        return res.send({
+            data: questions,
+        });
+    }
+    // //////////////////////////////////////////////////////
     static async getQuestionController(req, res) {
-            const { id } = req.params;
+        const { id } = req.params;
 
-            const question = await Question.findOne({ _id: id });
+        const question = await Question.findOne({ _id: id });
 
-            return res.send(question);
-        }
-        // //////////////////////////////////////////////////////
+        return res.send(question);
+    }
+    // //////////////////////////////////////////////////////
 
     static async postQuestionsController(req, res) {
-            const questionBody = req.body;
+        const questionBody = req.body;
 
-            try {
-                const saveData = await Question.create(questionBody);
-
-                return res
-                    .status(201)
-                    .send({
-                        data: saveData,
-                    });
-            } catch (error) {
-                res
-                    .status(400)
-                    .send({ message: 'Invalid data' });
-            }
-        }
-        // //////////////////////////////////////////////////////
-    static async putQuestionsController(req, res) {
-            if (!req.body) {
-                return res.sendStatus(400);
-            }
-
-            const id = req.body._id;
-
-            const newQues = req.body;
-            const ques = await Question.findOneAndUpdate({ _id: id }, newQues, { new: true });
+        try {
+            const saveData = await Question.create(questionBody);
 
             return res
                 .status(201)
-                .send({ data: ques });
+                .send({
+                    data: saveData,
+                });
+        } catch (error) {
+            res
+                .status(400)
+                .send({ message: 'Invalid data' });
         }
-        // //////////////////////////////////////////////////////
+    }
+    // //////////////////////////////////////////////////////
+    static async putQuestionsController(req, res) {
+        if (!req.body) {
+            return res.sendStatus(400);
+        }
+
+        const id = req.body._id;
+
+        const newQues = req.body;
+        const ques = await Question.findOneAndUpdate({ _id: id }, newQues, { new: true });
+
+        return res
+            .status(201)
+            .send({ data: ques });
+    }
+    // //////////////////////////////////////////////////////
 
     static async deleteQuestionsController(req, res) {
         const { id } = req.body;
