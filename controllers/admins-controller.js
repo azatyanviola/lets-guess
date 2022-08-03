@@ -11,7 +11,7 @@ function createToken(body) {
     });
 }
 
-class AdminCtrl {
+class AdminsCtrl {
     static async  adminLogin(req, res) {
         try {
             const user = await UsersModel.findOne({
@@ -75,10 +75,10 @@ class AdminCtrl {
     }
 
     static async getHome(req, res) {
-        await res.sendFile(path.resolve('client/views/home.html'));
+        await res.sendFile(path.resolve('client/views/admin-view/create.html'));
     }
 }
 
 module.exports = {
-    AdminCtrl,
+    AdminsCtrl,
 };

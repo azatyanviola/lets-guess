@@ -1,7 +1,7 @@
 const Question = require('../models/questionSchema.js');
 const mongoose = require('mongoose');
 
-class QuestionCtrl {
+class QuestionsCtrl {
     // //////////////////////////////////////////////////////
     static async getQuestionsController(req, res) {
         const questions = await Question.find();
@@ -82,5 +82,5 @@ class QuestionCtrl {
 }
 
 module.exports = {
-    QuestionCtrl,
+    QuestionsCtrl,
 };

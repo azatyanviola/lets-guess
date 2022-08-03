@@ -11,7 +11,6 @@ require('./controllers/config');
 const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 const { jwt } = require('./controllers/config');
-const questionRt = require('./routers/adminRouter');
 const path = require('path');
 
 const db = {
@@ -30,16 +29,14 @@ passport.use(new Strategy(jwt, ((jwtPayload, done) => {
 })));
 
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.json());
 
-app.use('/admin', questionRt);
-
-const { router } = require('./routers/admin-router');
-app.use('/', router);
-
-const { userRt } = require('./routers/user-router');
-app.use('/', userRt);
+const questionsRt = require('./routers/questions-router');
+app.use('/', questionsRt);
+const adminsRouter = require('./routers/admins-router');
+app.use('/', adminsRouter);
+const usersRt = require('./routers/users-router');
+app.use('/', usersRt);
 
 // const { playRt } = require('./routers/play-router');
 // app.use('/play', playRt);

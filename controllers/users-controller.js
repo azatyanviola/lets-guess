@@ -17,7 +17,7 @@ const upperCaseCheck = /^(?=.*[A-Z]).*$/;
 const specialSymbolCheck = /^(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?/_₹]).*$/;
 const languageCheck = /[^a-zA-Zа-яА-Я\u0561-\u0587\u0531-\u0556-]+/g;
 
-class UserCtrl {
+class UsersCtrl {
     static async  userLogin(req, res) {
         try {
             const user = await UserModel.findOne({
@@ -90,7 +90,7 @@ class UserCtrl {
         }
     }
 
-    static async getLogin(req, res) {
+    static async getLoginPage(req, res) {
         await  res.sendFile(path.resolve('client/views/user-login.html'));
     }
 
@@ -104,5 +104,5 @@ class UserCtrl {
 }
 
 module.exports = {
-    UserCtrl,
+    UsersCtrl,
 };
