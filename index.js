@@ -14,8 +14,12 @@ const { jwt } = require('./controllers/config');
 const questionRt = require('./routers/adminRouter');
 const path = require('path');
 
+const db = {
+    url: `${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+};
+
 (async () => {
-    await mongoose.connect('mongodb+srv://lets-guess:nodejsgroup2022@cluster0.mdxrd.mongodb.net/lets-guess');
+    await mongoose.connect(db.url);
 })();
 
 passport.use(new Strategy(jwt, ((jwtPayload, done) => {
@@ -37,10 +41,17 @@ app.use('/', router);
 const { userRt } = require('./routers/user-router');
 app.use('/', userRt);
 
+// const { playRt } = require('./routers/play-router');
+// app.use('/play', playRt);
+app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(express.static('client/views'));
 app.get('/', async (req, res) => {
     await res.sendFile(path.resolve('client/views/first-page.html'));
+});
+
+app.get('/play', (req, res) => {
+    res.render('play');
 });
 
 server.listen(PORT, () => {
