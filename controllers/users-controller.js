@@ -3,7 +3,6 @@ const _ = require('lodash');
 const config = require('./config');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const path = require('path');
 
 function createToken(body) {
     return jwt.sign(body, config.jwt.secretOrKey, {
@@ -33,7 +32,7 @@ class UsersCtrl {
 
                 res
                     .status(200)
-                    .redirect('/home');
+                    .send({ message: 'User successfully logged ' });
             } else {
                 res
                     .status(400)
@@ -83,24 +82,39 @@ class UsersCtrl {
             res.cookie('token', token, {
                 httpOnly: true,
             });
-            res.status(200).redirect('/users');
+            res.status(200).send({ message: 'User created.' });
         } catch (err) {
             console.error('E, register,', err);
             res.status(500).send({ message: 'some error' });
         }
     }
 
-    static async getLoginPage(req, res) {
-        await  res.sendFile(path.resolve('client/views/user-login.html'));
+    static async getOneUser(req, res) {
+        const { id } = req.params;
+
+        const question = await UserModel.findOne({ _id: id });
+
+        return res.send(question);
     }
 
-    static async getHome(req, res) {
-        await res.sendFile(path.resolve('client/views/home.html'));
-    }
+    static async getUsers(req, res) {
+        const questions = await UserModel.find();
 
-    static async getRegister(req, res) {
-        await  res.sendFile(path.resolve('client/views/registration.html'));
+        return res.send({
+            data: questions,
+        });
     }
+    // static async getLoginPage(req, res) {
+    //     await  res.sendFile(path.resolve('client/views/user-login.html'));
+    // }
+
+    // static async getHome(req, res) {
+    //     await res.sendFile(path.resolve('client/views/home.html'));
+    // }
+
+    // static async getRegister(req, res) {
+    //     await  res.sendFile(path.resolve('client/views/registration.html'));
+    // }
 }
 
 module.exports = {
