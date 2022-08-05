@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const http = require('http');
 const server = http.createServer(app);
 const mongoose = require('mongoose');
@@ -14,12 +15,16 @@ const { jwt } = require('./controllers/config');
 const path = require('path');
 
 const db = {
-    url: `${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+    url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
 };
 
 (async () => {
     await mongoose.connect(db.url);
 })();
+
+app.use(cors({
+    origin: '*'
+}));
 
 passport.use(new Strategy(jwt, ((jwtPayload, done) => {
     if (jwtPayload !== void 0) {
@@ -42,13 +47,23 @@ app.use('/', usersRt);
 // app.use('/play', playRt);
 app.set('view engine', 'ejs');
 app.use(cookieParser());
-app.use(express.static('client/views'));
+// app.use(express.static('client/views'));
 app.get('/', async (req, res) => {
     await res.sendFile(path.resolve('client/views/first-page.html'));
 });
 
 app.get('/play', (req, res) => {
     res.render('play');
+});
+
+app.get('/testapi', (req, res) => {
+    console.log('testapi')
+    res.end(JSON.stringify({test: 'test string'}));
+});
+
+app.post('/register', (req, res) => {
+    console.log('req ', req.body)
+    res.end(JSON.stringify({test: 'test string'}))
 });
 
 server.listen(PORT, () => {
