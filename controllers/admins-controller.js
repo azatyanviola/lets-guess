@@ -3,7 +3,6 @@ const _ = require('lodash');
 const config = require('./config');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const path = require('path');
 
 function createToken(body) {
     return jwt.sign(body, config.jwt.secretOrKey, {
@@ -27,7 +26,7 @@ class AdminsCtrl {
 
                 res
                     .status(200)
-                    .redirect('/home');
+                    .send({ message: 'Admin successfully logged' });
             } else {
                 res
                     .status(400)
@@ -70,13 +69,13 @@ class AdminsCtrl {
         }
     }
 
-    static async getLogin(req, res) {
-        await  res.sendFile(path.resolve('client/views/admin-login.html'));
-    }
+    // static async getLogin(req, res) {
+    //     await  res.sendFile(path.resolve('client/views/admin-login.html'));
+    // }
 
-    static async getHome(req, res) {
-        await res.sendFile(path.resolve('client/views/admin-view/create.html'));
-    }
+    // static async getHome(req, res) {
+    //     await res.sendFile(path.resolve('client/views/admin-view/create.html'));
+    // }
 }
 
 module.exports = {
